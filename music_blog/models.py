@@ -3,7 +3,7 @@ from django.db import models
 from django.utils import timezone
 
 class Song(models.Model):
-  author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+  author = models.CharField(max_length=200)
   title = models.CharField(max_length=100)
   songwriter =  models.CharField(max_length=200)
   year = models.TextField(max_length=4, blank=True, null=True)
