@@ -4,28 +4,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
   <title>Document</title>
 </head>
 <body>
-  <p>isso eh uma musica</p>
-  <p>aqui tera infos da musica</p>
+  <div class="content">
+    <p>isso eh uma musica</p>
+    <p>aqui tera infos da musica</p>
+  
+    <p>{{lyrics}}</p>
 
-
-  <div class="comment-container">
-    {% for comment in comments %}
-      {{comment.user}}
-      {{comment.content}}
-      {{comment.created_date}}
-    {% endfor %}
-  </div>
-
-  <h3>leave a comment</h3>
-  <div class="comment-form">
-    <form method="post" action="{% url 'add_comment_to_song' song.pk %}">
-      {{ comment_form.as_p }}
-      {% csrf_token %}
-      <button type="submit">Submit</button>
-    </form>  
+    <div class="comment-container">
+      {% for comment in comments %}
+        {{comment.user}}
+        {{comment.content}}
+        {{comment.created_date}}
+      {% endfor %}
+    </div>
+  
+    <h3>leave a comment</h3>
+    <div class="comment-form">
+      <form method="post" action="{% url 'add_comment_to_song' song.pk %}">
+        {{ comment_form.as_p }}
+        {% csrf_token %}
+        <button type="submit">Submit</button>
+      </form>  
+    </div>
   </div>
 
 

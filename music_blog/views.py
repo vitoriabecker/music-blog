@@ -1,23 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Song, Comment
 from .forms import CommentForm
-
+import requests 
 """
-views ideas:
-song_list - going to be home page
-song_detail - shows the lyrics or maybe a curiosity about the song
-
 song_mp3 - kkkkkk, preciso de uma view pra transformar em mp3, correto?
-sessao de comentario? - talvez, nao sei
-
-vai ter create? nao sei se faz sentido aqui, acho q o melhor eh deixar simples mesmo
 
 """
+
 
 def song_list(request):
   template_name = 'song_list.html'
   songs = Song.objects.all()
-  return render(request, 'music_blog/song_list.html', {'songs':songs})
+  return render(request, template_name, {'songs':songs})
 
 
 def song_detail(request, pk):
@@ -25,11 +19,17 @@ def song_detail(request, pk):
   song = get_object_or_404(Song, pk=pk)
   comments = song.comments.all()
 
+  params = {'track_name':song.title, 'artist_name':song.artist,}
+  response = requests.get('https://lrclib.net/api/get', params=params)
+  response = response.json()
+  lyrics = response.get('plainLyrics')
+
   comment_form = CommentForm()
 
-  return render(request, 'music_blog/song_detail.html', {'song':song,
-                                                        'comments':comments,
-                                                        'comment_form':comment_form,})
+  return render(request, template_name, {'song':song,
+                                          'comments':comments,
+                                          'comment_form':comment_form,
+                                          'lyrics': lyrics,})
 
 
 def add_comment_to_song(request, pk):

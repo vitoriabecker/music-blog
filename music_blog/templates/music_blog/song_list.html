@@ -1,16 +1,27 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
+
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <p>hi there</p>
+  <title>musica</title>
 
-  {% for song in songs %}
-    <a href="{% url 'song_detail' pk=song.pk %}">{{ song.title }}</a>
-  {% endfor %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+  <title>Document</title>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <p>hi, this is my music blog</p>
+
+    {% for song in songs %}
+      <p><a href="{% url 'song_detail' pk=song.pk %}">{{ song.title }}</a></p>
+    {% endfor %}
+  </div>
+
 </body>
 </html>
