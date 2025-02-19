@@ -15,13 +15,17 @@
 
 <body>
 
-  <div class="container">
-    <p>hi, this is my music blog</p>
 
-    {% for song in songs %}
-      <p><a href="{% url 'song_detail' pk=song.pk %}">{{ song.title }}</a></p>
-    {% endfor %}
+  <div class="song-list">
+    <h3>choose a song</h3>
+
+    <div class="songs">
+      {% for song in songs %}
+        <p><a href="{% url 'song_detail' pk=song.pk %}">{{ song.title }}</a></p> 
+      {% endfor %}
+    </div>
   </div>
+
 
 </body>
 </html>

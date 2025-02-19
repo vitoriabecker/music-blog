@@ -8,27 +8,45 @@
   <title>Document</title>
 </head>
 <body>
-  <div class="content">
-    <p>isso eh uma musica</p>
-    <p>aqui tera infos da musica</p>
-  
-    <p>{{lyrics}}</p>
 
-    <div class="comment-container">
-      {% for comment in comments %}
-        {{comment.user}}
-        {{comment.content}}
-        {{comment.created_date}}
-      {% endfor %}
+  <div class="wrapper">
+    <div class="left">
+      <div class="lyrics-container">
+        <p id="song-title">{{ song.title }} - {{ song.artist }}</p>
+        {% for lyric in split_lyrics %}
+          <p id="lyrics">{{ lyric }}</p>
+        {% endfor %}
+      </div>
     </div>
-  
-    <h3>leave a comment</h3>
-    <div class="comment-form">
-      <form method="post" action="{% url 'add_comment_to_song' song.pk %}">
-        {{ comment_form.as_p }}
-        {% csrf_token %}
-        <button type="submit">Submit</button>
-      </form>  
+
+
+    <div class="right">
+      
+      <div class="comment-container">
+
+        <div class="comment-box">
+          <h3 id="leave-comment">hey, leave a comment</h3>
+          <form method="post" action="{% url 'add_comment_to_song' song.pk %}">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <div class="button">
+              <button type="submit">Submit</button>
+            </div>
+          </form> 
+        </div> 
+
+        <div class="comment-body">
+          <h3>{{ comment.count }} comments</h3>
+          <hr>
+          {% for comment in comments %}
+            <div class="comments">
+              <p id="comment-user">{{ comment.user }} <span>{{ comment.created_date }}</span></p>
+              {{ comment.comment | linebreaks }}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
     </div>
   </div>
 

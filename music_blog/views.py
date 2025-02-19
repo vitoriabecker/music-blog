@@ -23,13 +23,14 @@ def song_detail(request, pk):
   response = requests.get('https://lrclib.net/api/get', params=params)
   response = response.json()
   lyrics = response.get('plainLyrics')
+  split_lyrics = lyrics.split('\n')
 
   comment_form = CommentForm()
 
   return render(request, template_name, {'song':song,
                                           'comments':comments,
                                           'comment_form':comment_form,
-                                          'lyrics': lyrics,})
+                                          'split_lyrics': split_lyrics,})
 
 
 def add_comment_to_song(request, pk):

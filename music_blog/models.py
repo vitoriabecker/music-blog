@@ -17,8 +17,8 @@ class Song(models.Model):
   
 class Comment(models.Model):
   song = models.ForeignKey(Song, related_name='comments', on_delete=models.CASCADE)
-  user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-  content = models.TextField(max_length=450)
+  user = models.CharField(max_length=255)
+  comment = models.TextField()
   created_date = models.DateTimeField(default=timezone.now)
 
   class Meta:

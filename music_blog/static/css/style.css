@@ -12,16 +12,288 @@ html{
 }
 
 body{
-  background: #192A2C;
+  background: #F2E6D8;
 }
 
-.container p{
-  font-size: 30px;
-  color: #A56135;
+.song-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-.container a{
+.song-list h3 {
+  color: #40372F;
+  font-size: 35px;
+  font-weight: 800;
+  padding: 15px;
+}
+
+.songs p {
+  padding: 8px;
+}
+
+.songs a {
+  font-size: 25px;
   text-decoration: none;
-  text-transform: none;
-  color: #BE7D41;
+  text-transform: capitalize;
+  color: #8C6B42;
+  font-weight: normal;
+  position: relative;
+}
+
+.songs a::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  border-radius: 4px;
+  background-color: #8C6B42;
+  bottom: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .3s ease-in-out;
+}
+
+a:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+.photos-container{
+  width: 100%;
+  height: 300px;
+}
+
+.image{
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+  object-position: top;
+}
+
+
+
+/* song detail */
+.wrapper {
+  display: flex;
+}
+
+.left, .right {
+  width: 50%;
+}
+
+.left {
+  background: #8C6B42;
+  text-align: center;
+}
+
+.right{
+  background: #F2E6D8;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.lyrics-container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 100px;
+}
+
+#song-title {
+  font-size: 25px;
+  color: #40372F;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#lyrics {
+  font-size: 20px;
+  color: #F2E6D8;
+  line-height: 1.7;
+}
+
+
+
+/* comment section */
+
+.comment-container {
+  display: block;
+  margin-top: 100px;
+  width: 60%;
+}
+
+.comment-container h3{
+  color: #40372F;
+  font-size: 22px;
+  font-weight: normal;
+}
+
+#leave-comment {
+  margin-bottom: 18px;
+}
+
+.comment-container{
+  text-align: left;
+}
+
+.comment-box {
+  margin-bottom: 50px;
+}
+
+#id_user {
+  margin-bottom: 14px;
+}
+
+.comment-box label{
+  display: block;
+  color: #8C6B42;
+  font-size: 16px;
+  font-weight: bolder;
+  margin-bottom: 5px;
+}
+
+.comment-box input {
+  box-sizing: border-box;
+  border-radius: 12px;
+  background-color: #fff;
+  border: 1px solid #fff;
+  height: 40px;
+  width: 45%;
+  resize: none;
+  padding: 20px;
+}
+
+.comment-box textarea {
+  box-sizing: border-box;
+  border-radius: 12px;
+  background-color: #fff;
+  border: 1px solid #fff;
+  height: 120px;
+  width: 100%;
+  resize: none;
+  padding: 20px;
+}
+
+.button {
+  text-align: end;
+}
+
+.button button {
+  margin-top: 8px;
+  height: 40px;
+  width: 20%;
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  color: #8C6B42;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.button button:hover {
+  background-color: #8C6B42;
+  color: #fff;
+  transition: 0.3s;
+  border: none;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #40372F;
+  margin: 6px 0;
+}
+
+#comment-user{
+  margin-top: 20px;
+  font-size: 16px;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.comments p {
+  margin-top: 6px;
+  display: block;
+  color: #8C6B42;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.comments span {
+  color: rgb(150, 150, 150);
+  font-weight: normal;
+  font-size: 14px;
+}
+
+
+
+@media screen and (max-width: 1440px) {
+  .wrapper {
+    display: block;
+  }
+
+  .left, .right {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 630px) {
+
+  .lyrics-container {
+    padding: 30px;
+  }
+  
+  #song-title {
+    font-size: 18px;
+  }
+  
+  #lyrics {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .comment-container {
+    display: block;
+    margin-top: 100px;
+    width: 80%;
+  }
+  
+  .comment-container h3{
+    font-size: 18px;
+  }
+  
+  .comment-box label{
+    font-size: 16px;
+  }
+  
+  .button button {
+    font-size: 15px;
+  }
+  
+  #comment-user{
+    font-size: 16px;
+  }
+  
+  .comments p {
+    font-size: 16px;
+  }
+  
+  .comments span {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .button button {
+    margin-top: 8px;
+    height: 40px;
+    width: 30%;
+  }
 }
