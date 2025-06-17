@@ -2,10 +2,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Song, Comment
 from .forms import CommentForm
 import requests 
-"""
-song_mp3 - kkkkkk, preciso de uma view pra transformar em mp3, correto?
-
-"""
 
 
 def song_list(request):
